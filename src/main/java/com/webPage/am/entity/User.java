@@ -30,7 +30,7 @@ public class User {
     private String email;
     @Column
     private String password;
-    @Column
+    @Column(name = "image_path")
     private String imagePath;
 
 }

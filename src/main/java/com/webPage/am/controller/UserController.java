@@ -1,7 +1,7 @@
 package com.webPage.am.controller;
 
 import com.webPage.am.entity.User;
-import com.webPage.am.userRepository.UserRepository;
+import com.webPage.am.repository.UserRepository;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,8 +48,8 @@ public class UserController {
 
   @PostMapping("/save/login")
   public String saveLogin(@ModelAttribute User user){
-    if(userRepository.findById(user.getId())!=null){
-      return "redirect:/";
+    if(userRepository.findByEmailAndPassword(user.getEmail(),user.getPassword())!=null){
+     return "redirect:/get/category";
     }
     return "register";
   }

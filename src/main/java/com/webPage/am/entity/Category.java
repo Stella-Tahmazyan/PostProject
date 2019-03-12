@@ -6,28 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "article")
-public class Article {
+@Table(name="category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int id ;
-
-    @Column
-    private String title;
-
-    @Column
-    private Date date;
-    @Column(name = "article")
-    private String art;
-    @ManyToOne
-    private Category category;
-
+    private int id;
+    @Column(name = "category")
+    private String cat;
 }

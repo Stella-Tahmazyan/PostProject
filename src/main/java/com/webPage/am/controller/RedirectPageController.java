@@ -1,9 +1,10 @@
 package com.webPage.am.controller;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RedirectPageController {
@@ -16,5 +17,10 @@ public class RedirectPageController {
     @GetMapping("/page/register")
     public String registerPage(){
         return "register";
+    }
+
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 }
