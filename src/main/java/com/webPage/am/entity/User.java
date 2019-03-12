@@ -30,4 +30,7 @@ public class User {
     private String email;
     @Column
     private String password;
+    @Column
+    private String imagePath;
+
 }
