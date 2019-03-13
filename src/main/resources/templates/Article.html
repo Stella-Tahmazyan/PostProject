@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Igorski.co</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="row">
+
+                <div style="width: 200px;background-color: darkgray;height: 200px;">
+                    <p   th:text="${article.id}"></p>
+                    <p   th:text="${article.title}"></p>
+                    <p   th:text="${article.art}"></p>
+                    <p   th:text="${article.date}"></p>
+                </div>
+</div>
+
+</body>
+</html>

@@ -18,16 +18,16 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int id ;
+    private int id;
 
     @Column
     private String title;
 
     @Column
     private Date date;
-    @Column(name = "article")
+    @Column
     private String art;
     @ManyToOne
+//    @JoinColumn(name = "category_id")
     private Category category;
-
 }

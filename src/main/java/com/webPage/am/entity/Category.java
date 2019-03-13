@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +19,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-    @Column(name = "category")
+    @Column
     private String cat;
+//    @OneToMany
+//    @JoinColumn(name = "id",referencedColumnName = "id")
+//    List<Article> articles;
 }

@@ -3,26 +3,50 @@
     <head>
         <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Igorski.co</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+        <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" media="screen" /><style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
     </head>
     <body>
-        <div th:replace="fragments/header :: header"> This header content is going to be replaced.</div>
-        <div class="container">-
+        <div th:replace="fragments/header :: header"></div>
             <div class="row">
-                <div class="col-2" layout:fragment="sidebar">
-                    <h1>This is the layout's sidebar</h1>
-                    <p>This content will be replaced if the page
-                        using the layout also defines a layout:fragment="sidebar" segment.</p>
-                </div>
-                <div class="col" layout:fragment="content">
-                    <h1>This is the Layout's main section</h1>
-                    <p>This content will be replaced if the page
-                        using the layout also defines a layout:fragment="content" segment. </p>
-                </div>
+                <table>
+                    <tr>
+                        <th>Tiltle</th>
+                        <th>Article</th>
+                        <th>Date</th>
+                        <th>Create</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr th:if="${articles != null}" th:each="a :${articles}">
+                        <td><a th:href="@{/get/art(id=${a.id})}"  th:text="${a.title}"></a> </td>
+                        <td><a th:text="${a.art}"></a></td>
+                        <td><a th:text="${a.date}"></a></td>
+                        <td><a th:href="@{/get/art(id=${a.id})}" >Create</a> </td>
+                        <td><a th:href="@{/get/art(id=${a.id})}" >Edit</a> </td>
+                        <td><a th:href="@{/art/delete(id=${a.id})}" >Delete</a> </td>
+
+
+                    </tr>
+
+
+                </table>
+
             </div>
-        </div>
-        <!--<footer th:insert="fragments/footer :: footer" class="footer">-->
-            This content will remain, but other content will be inserted after it.
-        <!--</footer>-->
     </body>
 </html>
