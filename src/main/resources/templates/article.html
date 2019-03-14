@@ -57,7 +57,7 @@
                     <td><a th:href="@{/get/art(id=${a.id})}" th:text="${a.title}"></a></td>
                     <td><a th:text="${a.art}"></a></td>
                     <td><a th:text="${#dates.format(a.date, 'dd-MM-yyyy')}"></a></td>
-                    <td><a th:href="@{/edit/article(id=${a.id})}">Edit</a></td>
+                    <td><a th:href="@{/art/edit(id=${a.id})}">Edit</a></td>
                     <td><a th:href="@{/art/delete(id=${a.id})}">Delete</a></td>
 
                 </tr>
@@ -65,21 +65,46 @@
         </div>
     </div>
     <div class="card my-4">
-    <div class="card-header">
-        Edit Article
+        <div class="card-header">
+            Decription
+        </div>
+        <div style="width: 200px;background-color: darkgray;height: 200px;">
+            ID: <p th:text="${article.id}"></p>
+            TITLE: <p th:text="${article.title}"></p>
+            ARTICLE: <p th:text="${article.art}"></p>
+            DATE: <p th:text="${article.date}"></p>
+        </div>
     </div>
-    <div class="card-body">
-        <form  th:action="@{/save/art/edit}" th:object="${article}" method="post">
-            <input type="hidden" th:field="*{id}"/>
-            <p><input th:field="*{title}" type="text" placeholder="Title" class="form-control"></p>
-            <p><input th:field="*{art}" type="text" placeholder="Article" class="form-control"></p>
-            <p><input type="date" th:field="*{date}" placeholder="Date" class="form-control"></p>
-            <p><input type="hidden" th:field="*{category.id}">
-            </p>
-            <button type="submit" value="Add" class="btn btn-success">Add</button>
-        </form>
+    <div class="card my-4">
+        <div class="card-header">
+            Add Article
+        </div>
+        <div class="card-body">
+            <form action="/add/article"  method="post">
+                <p><input name="title" type="text" placeholder="Title" class="form-control"></p>
+                <p> <input name="art" type="text" placeholder="Article" class="form-control"></p>
+                <p><input name="date"  type="date" placeholder="Date" class="form-control"></p>
+                <p><select name="category.id" class="form-control">
+                    <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.cat}">
+                    </option>
+                </select></p>
+                <button type="submit" value="Add" class="btn btn-success">Add</button>
+            </form>
+        </div>
     </div>
-</div>
+    <!--<div class="card-body">-->
+    <!--<form action="#" th:action="@{/save/article/edit}" th:object="${article}" method="post">-->
+    <!--<input type="hidden" th:field="*{id}" />-->
+    <!--<p><input  th:field="*{title}" type="text" placeholder="Title" class="form-control"></p>-->
+    <!--<p><input  th:field="*{art}"  type="text" placeholder="Article" class="form-control"></p>-->
+    <!--<p><input type="date" th:field="*{date}" placeholder="Date" class="form-control"></p>-->
+    <!--<p><input type="hidden" th:field="*{category.id}">-->
+    <!--</p>-->
+    <!--<button type="submit" value="Add" class="btn btn-success">Add</button>-->
+    <!--</form>-->
+    <!--</div>-->
 </div>
 </body>
+
+
 </html>

@@ -28,7 +28,6 @@ public class CategoryController {
  public String getCategory(ModelMap modelMap) {
      modelMap.addAttribute("category", repository.findAll());
      modelMap.addAttribute("articles", articleRepository.findAll());
-
    return "layout";
 
  }
