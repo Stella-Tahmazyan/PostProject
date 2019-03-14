@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 @Controller
 public class CategoryController {
 
@@ -15,10 +18,8 @@ public class CategoryController {
     @Autowired
     private ArticleRepository articleRepository;
 
- @GetMapping("/add/category")
-    public String addCateg(){
-     Category category = new Category();
-     category.setCat("IT");
+ @PostMapping("/add/category")
+    public String addCateg(@ModelAttribute Category category){
      repository.save(category);
         return "redirect:/";
 
@@ -27,7 +28,8 @@ public class CategoryController {
  public String getCategory(ModelMap modelMap) {
      modelMap.addAttribute("category", repository.findAll());
      modelMap.addAttribute("articles", articleRepository.findAll());
-     return "layout";
+
+   return "layout";
 
  }
 }

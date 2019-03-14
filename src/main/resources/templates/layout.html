@@ -24,29 +24,48 @@
     <body>
         <div th:replace="fragments/header :: header"></div>
             <div class="row">
+                <div>
                 <table>
                     <tr>
                         <th>Tiltle</th>
                         <th>Article</th>
                         <th>Date</th>
-                        <th>Create</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
                     <tr th:if="${articles != null}" th:each="a :${articles}">
                         <td><a th:href="@{/get/art(id=${a.id})}"  th:text="${a.title}"></a> </td>
                         <td><a th:text="${a.art}"></a></td>
-                        <td><a th:text="${a.date}"></a></td>
-                        <td><a th:href="@{/get/art(id=${a.id})}" >Create</a> </td>
-                        <td><a th:href="@{/get/art(id=${a.id})}" >Edit</a> </td>
+                        <td><a th:text="${#dates.format(a.date, 'dd-MM-yyyy')}"></a></td>
+                        <td><a th:href="@{/edit/article(id=${a.id})}" >Edit</a> </td>
                         <td><a th:href="@{/art/delete(id=${a.id})}" >Delete</a> </td>
 
-
                     </tr>
-
-
                 </table>
-
+                </div>
+                <div>
+                    <form action="/add/article"  method="post">
+                        <p><input name="title" type="text" placeholder="Title"></p>
+                        <p> <input name="art" type="text" placeholder="Article"></p>
+                        <p><input name="date"  type="date" placeholder="Date"></p>
+                        <p><select name="category.id">
+                            <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.cat}">
+                        </option>
+                        </select></p>
+                        <button type="submit"value="Add">Add</button></p>
+                    </form>
+                    <!--<form action="/add/article"  method="post">-->
+                        <!--<p><input value="${article.id}" type="text" placeholder="Title"></p>-->
+                        <!--&lt;!&ndash;<p> <input th:field="*{art}" type="text" placeholder="Article"></p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p><input th:field="*{date}"  type="date" placeholder="Date"></p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p><input th:field="*{title}"  type="text" placeholder="Date"></p>&ndash;&gt;-->
+                        <!--<form action="#" th:action="@{/add/article}" th:object="${article}" method="post">-->
+                            <!--<p>Id: <input type="text" th:field="*{id}" /></p>-->
+                            <!--<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+                        <!--</form>-->
+                    <!--</form>-->
+                </div>
             </div>
+
     </body>
 </html>

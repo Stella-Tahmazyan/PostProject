@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Igorski.co</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet" media="screen" /><style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+    <!--<form action="/add/article"  method="post">-->
+    <!--<p><input value="${article.id}" type="text" placeholder="Title"></p>-->
+    <!--<p> <input th:field="*{art}" type="text" placeholder="Article"></p>-->
+    <!--<p><input th:field="*{date}"  type="date" placeholder="Date"></p>-->
+    <!--<p><input th:field="*{title}"  type="text" placeholder="Date"></p>-->
+    <form action="#" th:action="@{/save/article/edit}" th:object="${article}" method="post">
+   <input type="hidden" th:field="*{id}" />
+    <p> <input type="text" th:field="*{title}" /></p>
+    <p>Id: <input type="text" th:field="*{art}" /></p>
+      <!--The time is: <strong th:text="${#temporals.format(now, 'dd/MMM/yyyy HH:mm')}">31/12/2015 15:00</strong>-->
+
+      <p>Id: <input type="date" th:field="*{date}"/></p>
+      <input type="hidden" th:field="*{category.id}">
+    <p><input type="submit" value="Submit" /></p>
+    </form>
+
+</body>
+</html>
