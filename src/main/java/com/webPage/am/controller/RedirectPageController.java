@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RedirectPageController {
 
 
+
     @Autowired
     private CategoryRepository repository;
     @Autowired
@@ -34,12 +35,10 @@ public class RedirectPageController {
         return new LayoutDialect();
     }
 
-    @GetMapping("/home")
-    public String home(ModelMap modelMap){
-        modelMap.addAttribute("category", repository.findAll());
-        modelMap.addAttribute("articles", articleRepository.findAll());
-
-
-        return "layout";
-    }
+//    @GetMapping("/home")
+//    public String home(ModelMap modelMap){
+//        modelMap.addAttribute("category", repository.findAll());
+//        modelMap.addAttribute("articles", articleRepository.findAll());
+//        return "layout";
+//    }
 }

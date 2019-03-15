@@ -31,11 +31,7 @@ public class Book {
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     @Column
     private Date date;
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "book_auther",
-            joinColumns = { @JoinColumn(name = "book_id"), },
-            inverseJoinColumns = { @JoinColumn(name = "auther_id") }
-    )
-    Set<Auther> authers =new HashSet<>();
+    @ManyToMany
+     @JoinTable(name = "book")
+    List<Auther> authers;
 }

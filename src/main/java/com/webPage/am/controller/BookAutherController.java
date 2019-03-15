@@ -18,12 +18,12 @@ public class BookAutherController {
     private BookRepository bookRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
     @GetMapping("/page")
     public String home(ModelMap modelMap){
         modelMap.addAttribute("books",bookRepository.findAll());
         modelMap.addAttribute("authers",repository.findAll());
         modelMap.addAttribute("category",categoryRepository.findAll());
-
-        return "book";
+        return "home";
     }
 }

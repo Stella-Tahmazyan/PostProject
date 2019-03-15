@@ -25,7 +25,10 @@ public class Auther {
     private  String name;
     @Column
     private String surname;
-    @ManyToMany(mappedBy = "auther")
-    Set<Book> books=new HashSet<>();;
+    @ManyToMany
+    @JoinTable(name = "auther_book",
+        joinColumns = @JoinColumn(name = "auther_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
+    List<Book> books;
 
 }
