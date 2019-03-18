@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Igorski.co</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="card my-4">
+        <div class="card-header">
+            Article list
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Tiltle</th>
+                    <th>Article</th>
+                    <th>Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tr th:if="${articles != null}" th:each="a :${articles}">
+                    <td><a th:href="@{/get/art(id=${a.id})}" th:text="${a.title}"></a></td>
+                    <td><a th:text="${a.art}"></a></td>
+                    <td><a th:text="${#dates.format(a.date, 'dd-MM-yyyy')}"></a></td>
+                    <td><a th:href="@{/edit/article(id=${a.id})}">Edit</a></td>
+                    <td><a th:href="@{/art/delete(id=${a.id})}">Delete</a></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card my-4">
+    <div class="card-header">
+        Edit Article
+    </div>
+    <div class="card-body">
+        <form  th:action="@{/save/art/edit}" th:object="${article}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <p><input th:field="*{title}" type="text" placeholder="Title" class="form-control"></p>
+            <p><input th:field="*{art}" type="text" placeholder="Article" class="form-control"></p>
+            <p><input type="date" th:field="*{date}" placeholder="Date" class="form-control"></p>
+            <p><input type="hidden" th:field="*{category.id}">
+            </p>
+            <button type="submit" value="Add" class="btn btn-success">Add</button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

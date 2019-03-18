@@ -25,9 +25,15 @@ public class User {
     @Column
     private int age;
     @Column
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender= Gender.FEMALE;
     @Column
     private String email;
     @Column
     private String password;
+    @Column(name = "image_path")
+    private String imagePath;
+
+
+
 }

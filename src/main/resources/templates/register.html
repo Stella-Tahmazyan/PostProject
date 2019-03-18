@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Post</title>
+    <link rel="shortcut icon" type="image/png" href="/Screenshot from 2019-01-10 13-13-13.png"/>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -124,19 +125,19 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/save/register" enctype="multipart/form-data">
+        <form class="login-form" action="/save/register" method="post" enctype="multipart/form-data">
             <input type="text" name="name" placeholder="Name"/>
-            <input type="text" name="username" placeholder="Username"/>
+            <input type="text" name="surname" placeholder="Username"/>
             <input type="number" name="age" placeholder="Age"/>
-            <input type="password" name="password" placeholder="Password"/>
+            <input type="text" name="email" placeholder="email"/>
             <input type="password" name="password" placeholder="Password"/>
             <select name="gender">
             <option name="gender" >Female</option>
             <option name="gender">Male</option>
             </select>
-            <input type="file" name="imageUrl">
+            <input type="file" name="picture">
             <button>login</button>
-            <p class="message">Already registered? <a href="@{/page/login}">Sign In</a></p>
+            <p class="message">Already registered? <a th:href="@{/page/login}">Sign In</a></p>
         </form>
     </div>
 </div>

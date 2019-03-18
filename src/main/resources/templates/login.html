@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Post</title>
+    <link rel="shortcut icon" type="image/png" href="./Screenshot from 2019-01-10 13-13-13.png"/>
+
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -124,12 +126,22 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="username"/>
-            <input type="password" placeholder="password"/>
-            <button>login</button>
-            <p class="message">Not registered? <a th:href="@{/get/register}">Create an account</a></p>
+        <form action="login" method="POST">
+            <table>
+                <tr>
+                    <td>User:</td>
+                    <td><input type='text' name='username' value=''/></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type='password' name='password' /></td>
+                </tr>
+                <tr>
+                    <td><input name="submit" type="submit" value="submit" /></td>
+                </tr>
+            </table>
         </form>
+
     </div>
 </div>
 </body>
