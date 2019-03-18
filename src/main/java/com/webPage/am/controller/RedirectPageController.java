@@ -2,14 +2,13 @@ package com.webPage.am.controller;
 
 import com.webPage.am.repository.ArticleRepository;
 import com.webPage.am.repository.CategoryRepository;
+import com.webPage.am.security.SpringUser;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RedirectPageController {
@@ -18,12 +17,15 @@ public class RedirectPageController {
 
     @Autowired
     private CategoryRepository repository;
+
     @Autowired
     private ArticleRepository articleRepository;
-    @RequestMapping(value = {"/", "/page/login"})
+
+    @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
+
 
     @GetMapping("/page/register")
     public String registerPage() {
@@ -41,4 +43,10 @@ public class RedirectPageController {
 //        modelMap.addAttribute("articles", articleRepository.findAll());
 //        return "layout";
 //    }
+@GetMapping("/loginSuccess")
+public String loginSuccess(@AuthenticationPrincipal
+    SpringUser springUser) {
+    return "redirect:/get/category";
+
+}
 }

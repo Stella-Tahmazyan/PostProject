@@ -3,6 +3,8 @@ package com.webPage.am;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 @SpringBootApplication
@@ -12,10 +14,11 @@ public class PostApplication {
         SpringApplication.run(PostApplication.class, args);
     }
 
-//  @Bean
-//  public Java8TimeDialect java8TimeDialect() {
-//    return new Java8TimeDialect();
-//  }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+
+        return new BCryptPasswordEncoder();
+    }
 
 
 }

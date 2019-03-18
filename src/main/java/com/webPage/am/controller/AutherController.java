@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AutherController {
 
-    @PostMapping
-    public String addAuther(@ModelAttribute Auther auther){
-        return "auther";
-    }
+//    @PostMapping
+//    public String addAuther(@ModelAttribute Auther auther){
+//        return "auther";
+//    }
 }
