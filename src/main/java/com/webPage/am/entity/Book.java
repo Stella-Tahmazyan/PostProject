@@ -31,7 +31,6 @@ public class Book {
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     @Column
     private Date date;
-    @ManyToMany
-     @JoinTable(name = "book")
-    List<Auther> authers;
+    @ManyToMany(mappedBy = "books")
+    Set<Auther> authers;
 }
